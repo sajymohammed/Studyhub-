@@ -26,7 +26,7 @@ function seed(){const a=ds(),ar=true,d=DEF();d.demo=true;
 const S=[['Mathematics','الرياضيات','#6d7bff',60],['Physics','الفيزياء','#a06bff',40],['English','الإنجليزية','#34d399',25]].map((x,i)=>({id:'m'+i,name:x[1],color:x[2],target:x[3],p:[55,30,70][i],note:'',d:1}));
 d.subjects=S;d.tasks=[['Study Algebra','مذاكرة الجبر','m0',1,'high',45,0],['Review Physics Chapter 2','مراجعة الفصل الثاني فيزياء','m1',2,'med',60,0],['Practice English Vocabulary','تدرّب على مفردات الإنجليزية','m2',-1,'low',20,1]].map((x,i)=>({id:'t'+i,title:x[1],sub:x[2],desc:'',due:addD(x[3]),pri:x[4],est:x[5],done:!!x[6],d:1}));
 d.sessions=[['m0',30,0],['m1',45,-1],['m2',25,-2],['m0',40,-3]].map((x,i)=>({id:'s'+i,sub:x[0],min:x[1],date:addD(x[2]),d:1}));d.goals=[{id:'g0',title:'ساعتان مذاكرة',type:'study',target:120,last:'',d:1},{id:'g1',title:'إنجاز 3 مهام',type:'tasks',target:3,last:'',d:1}];return d}
-function load(){try{const r=JSON.parse(localStorage.getItem(LS));if(r&&r.s)return Object.assign(DEF(),r,{s:Object.assign(DEF().s,r.s)})}catch(e){}return seed()}
+function load(){try{const r=JSON.parse(localStorage.getItem(LS));if(r&&r.s)return Object.assign(DEF(),r,{s:Object.assign(DEF().s,r.s)})}catch(e){}return DEF()}
 let D=load(),L=D.s.lang;const t=k=>(T[k]||[k,k])[L=='ar'?0:1];
 const save=()=>{try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){toast(t('err'))}};
 function toast(m){const e=$('#toast');e.innerHTML='<div></div>';e.firstChild.textContent=m;clearTimeout(toast.h);toast.h=setTimeout(()=>e.innerHTML='',2600)}
